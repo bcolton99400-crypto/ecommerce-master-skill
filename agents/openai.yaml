@@ -1,0 +1,4 @@
+interface:
+  display_name: "E-commerce Master Visual"
+  short_description: "Plan and produce conversion-focused e-commerce main images and detail pages."
+  default_prompt: "Use my product image(s), reference image(s), product facts and platform requirements to build an e-commerce visual system. First lock product truth and commercial strategy, then analyze reference visual DNA, map each selling point to visual proof, create one unified 5-main-image + 10-detail-page approval board, and only after approval generate production prompts and final visuals."
