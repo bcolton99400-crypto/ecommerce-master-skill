@@ -8,6 +8,14 @@ description: Unified e-commerce strategy, visual direction, image prompting, and
 ## Mission
 Turn product facts/images and visual references into a coherent, conversion-focused e-commerce campaign. The commercial layer decides **what to communicate**; the visual layer decides **how to prove it**.
 
+## Trigger modes
+Activate the relevant mode when the user's request clearly matches it:
+- **Furniture Detail Page Mode**: “家具详情页”, “淘宝家具详情页”, “天猫家具详情页”, “制作家具主图+详情页”, “启动家具电商详情页模式”, or “使用 ecommerce-master-skill 做家具详情页”.
+- **General E-commerce Mode**: other product main-image/detail-page requests.
+- If the user explicitly names `ecommerce-master-skill`, activate it even without a trigger phrase.
+
+When Furniture Detail Page Mode is activated, automatically enable the furniture/structured-product rules below and default to a furniture-oriented 5-head + 10-detail plan unless the user specifies another count.
+
 ## Operating doctrine
 **Product truth > commercial clarity > visual proof > aesthetics.** Never beautify by changing the product.
 
@@ -20,9 +28,35 @@ Turn product facts/images and visual references into a coherent, conversion-focu
 6. **Visual DNA** — treat references as language, not scene. Borrow light, type, density, mood and layout logic; do not blindly copy scene, props, brand, people, claims or colors.
 7. **Visual Proof** — for every output, select the strongest message-to-picture pattern and pass the Picture Solo Test before writing prompts.
 8. **5 + 10 Unified Storyboard** — default to 5 marketplace head images + 10 detail screens. Preserve any user-defined screen structure. Enforce diversity and product-presence rules.
-9. **ONE Approval Gate** — show the complete 5+10 planning board together. Do not ask for separate strategy/visual approvals.
+9. **ONE Approval Gate** — show the complete 5+10 planning board together. Do not ask for duplicate strategy/visual approvals.
 10. **Production Prompts** — after approval (or explicit skip), write one complete prompt per independent output.
 11. **Generation + QA** — generate, validate product accuracy, proof fit, typography, claims, ratio, reference DNA, model consistency and set-level diversity; regenerate failures.
+
+## Furniture Detail Page Mode
+When active, use a furniture-first content hierarchy:
+- D01: hero + product memory
+- D02: buyer scene / space problem
+- D03: strongest functional or structural selling point
+- D04: material / finish proof
+- D05: storage / capacity / usability proof
+- D06: real-life placement or use
+- D07: dimensions / scale / spatial fit
+- D08: craft / hardware / structural detail
+- D09: service / packaging / quality / factual trust proof
+- D10: closing lifestyle + product decision reason
+
+For furniture main images, prioritize: H01 product recognition/click, H02 strongest differentiator, H03 structure/material proof, H04 use/space-fit proof, H05 target-home persona. Never force all five to show the whole cabinet.
+
+### Furniture visual locks
+Lock silhouette, width/height/depth proportions, door/drawer/grid count, glass/openings, hardware, legs/base, material/finish, product color, construction details, camera angle and perspective. If replacing a product into another scene, preserve the requested scene camera and fit the product to it. Do not stretch, narrow, rotate, redesign, add/remove structural elements, or alter material to improve composition.
+
+### Common furniture-specific modes
+- **Product replacement**: replace only the requested product; preserve scene camera, requested props and scene structure.
+- **Scene change**: change wall/floor/bed/props/model while keeping the product locked.
+- **View change**: generate front/left/right/45-degree views while preserving product geometry.
+- **Close-up**: crop into actual material/structure without inventing construction.
+- **Scene expansion**: extend environment while preserving original product scale and perspective.
+- **Material change**: change only the explicitly requested material/finish; preserve geometry.
 
 ## Required planning outputs
 Before generation, provide:
@@ -43,7 +77,7 @@ Before generation, provide:
 Each H01-H05 and D01-D10 row should include:
 **role | message | source | pattern | Picture Solo Statement | main visual | scene | subject | composition | product exposure | draft consumer copy | claim boundary | DNA carried**.
 
-Only after this board passes may prompts be written.
+Only after this board passes may prompts be written, unless the user explicitly asks to skip approval.
 
 ## Head-image rules
 - Default 5 roles: H01 click/main; H02 selling A; H03 selling B; H04 selling C/practical value; H05 audience/persona.
@@ -55,7 +89,7 @@ Only after this board passes may prompts be written.
 ## Detail-page rules
 - Default 10 roles: D01 hero; D02 pain/scene; D03-D05 selling points; D06 usage; D07 practical; D08 detail/parameter; D09 trust; D10 closing.
 - Strict 3:4 vertical by default, not 9:16.
-- At least 7 of 10 screens must have distinct main visuals.
+- At least 7 of 10 main visuals must be distinct.
 - At least 4 of 10 should use no packaging or partial product exposure.
 - Detail pages are content-led and must not be vertical copies of H01.
 - If the user provides fixed screen directions, preserve them.
@@ -73,16 +107,13 @@ Packaging/product exposure is chosen by message, not habit. Hero/closing can use
 Never generate icons, pictograms, checkmark rows, ingredient bubbles, feature-icon grids, badge ribbons or decorative feature-arc systems. The visual itself must carry the proof.
 
 ## Consumer copy rule
-Write from the buyer's perspective: what they get, feel, experience or stop worrying about. Avoid manufacturer/spec-sheet language such as “采用XX技术”, “本产品具有XX功能”, “符合XX标准” and empty superlatives. Apply the “so what?” test to every headline.
+Write from the buyer's perspective: what they get, feel, experience or stop worrying about. Avoid manufacturer/spec-sheet language and empty superlatives. Apply the “so what?” test to every headline.
 
 ## Reference rule
 Reference images provide visual language: light behavior, typography attitude, density, commercial temperature, module rhythm and creative method. They do not automatically provide scene elements, props, brands, people, claims, prices or exact colors. Cap any single reference-scene element at 30% of outputs unless the user explicitly requests a scene lock.
 
 ## Color rule
 Priority: user brand colors → product identity/material → category fit → product legibility → reference color relationships. Never blindly copy a reference hue that conflicts with the product.
-
-## Furniture / structured-product mode
-Lock silhouette, proportions, doors/drawers/grids, glass/openings, hardware, legs/base, material/finish, color, construction details, camera angle and perspective. For product replacement, preserve the requested scene camera and fit the new product to it. Do not stretch, narrow, rotate or redesign the product to make composition easier.
 
 ## Human/model rule
 Use people only when they prove use, fit, scale, emotion, audience or credibility. When a recurring model appears, keep identity consistent while varying pose/action. Translate reference poses into physically plausible interactions with the actual product.
